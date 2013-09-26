@@ -26,7 +26,7 @@ module Twitter
         options[key] ? send(:"rewrite_#{key}", text, &options[key]) : text
       end
     end
-    deprecate :rewrite, :rewrite_entities
+    #deprecate :rewrite, :rewrite_entities
 
     def rewrite_usernames_or_lists(text)
       entities = Extractor.extract_mentions_or_lists_with_indices(text)
@@ -37,7 +37,7 @@ module Twitter
         yield(at, entity[:screen_name], list_slug)
       end
     end
-    deprecate :rewrite_usernames_or_lists, :rewrite_entities
+    #deprecate :rewrite_usernames_or_lists, :rewrite_entities
 
     def rewrite_hashtags(text)
       entities = Extractor.extract_hashtags_with_indices(text)
@@ -46,7 +46,7 @@ module Twitter
         yield(hash, entity[:hashtag])
       end
     end
-    deprecate :rewrite_hashtags, :rewrite_entities
+    #deprecate :rewrite_hashtags, :rewrite_entities
 
     def rewrite_urls(text)
       entities = Extractor.extract_urls_with_indices(text, :extract_url_without_protocol => false)
@@ -54,6 +54,6 @@ module Twitter
         yield(entity[:url])
       end
     end
-    deprecate :rewrite_urls, :rewrite_entities
+    #deprecate :rewrite_urls, :rewrite_entities
   end
 end
