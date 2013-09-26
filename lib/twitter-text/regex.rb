@@ -6,7 +6,7 @@ module Twitter
   # used throughout the <tt>Twitter</tt> classes. Special care has been taken to make
   # sure these reular expressions work with Tweets in all languages.
   class Regex
-    REGEXEN = {} # :nodoc:
+    REGEXEN = {} # :nodoc:([a-zA-Z0-9_]{1,20})                          # $3: Screen name
 
     def self.regex_range(from, to = nil) # :nodoc:
       if $RUBY_1_9
@@ -173,7 +173,7 @@ module Twitter
     REGEXEN[:valid_mention_or_list] = /
       (#{REGEXEN[:valid_mention_preceding_chars]})  # $1: Preceeding character
       (#{REGEXEN[:at_signs]})                       # $2: At mark
-      ([a-zA-Z0-9_]{1,20})                          # $3: Screen name
+      ([\p{Han}\p{Alnum}\-_]{3,24})                 # $3: Screen name
       (\/[a-zA-Z][a-zA-Z0-9_\-]{0,24})?             # $4: List (optional)
     /ox
     REGEXEN[:valid_reply] = /^(?:#{REGEXEN[:spaces]})*#{REGEXEN[:at_signs]}([a-zA-Z0-9_]{1,20})/o
